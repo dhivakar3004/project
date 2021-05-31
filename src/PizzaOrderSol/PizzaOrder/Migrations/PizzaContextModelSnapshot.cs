@@ -19,41 +19,42 @@ namespace PizzaOrder.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("PizzaOrder.Models.Order", b =>
+            modelBuilder.Entity("PizzaOrder.Models.OrderDetails", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<float>("Amount")
                         .HasColumnType("real");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<string>("Crust")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DeliveryDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("OrderId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("PizzaOrder.Models.OrderDetails", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("PizzaId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Toppings")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("PizzaId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -65,14 +66,14 @@ namespace PizzaOrder.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Crust")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("Isveg")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<string>("Speciality")
                         .HasColumnType("nvarchar(max)");
@@ -80,25 +81,6 @@ namespace PizzaOrder.Migrations
                     b.HasKey("PizzaId");
 
                     b.ToTable("Pizzas");
-                });
-
-            modelBuilder.Entity("PizzaOrder.Models.OrderDetails", b =>
-                {
-                    b.HasOne("PizzaOrder.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PizzaOrder.Models.Pizza", "Pizza")
-                        .WithMany()
-                        .HasForeignKey("PizzaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Pizza");
                 });
 #pragma warning restore 612, 618
         }

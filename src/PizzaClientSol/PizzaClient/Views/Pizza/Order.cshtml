@@ -1,0 +1,73 @@
+﻿@model PizzaClient.Models.OrderDetails
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+<h1>Order</h1>
+
+<div>
+    <h4>OrderDetails</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PizzaId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PizzaId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Crust)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Crust)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Toppings)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Toppings)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DeliveryDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Once Ordered cannot Be Cancelled. </h4>
+    @Html.ActionLink("Order", "Pizza", new {  id = Model.OrderId })  |
+    <a asp-action="HomePage">Back to HomePage</a>
+</div>

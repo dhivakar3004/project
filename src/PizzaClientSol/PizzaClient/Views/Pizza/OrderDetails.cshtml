@@ -1,0 +1,161 @@
+﻿@model PizzaClient.Models.OrderDetails
+
+@{
+    ViewData["Title"] = "OrderDetails";
+}
+
+<h1>OrderDetails</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="OrderDetails">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="PizzaId" type="hidden" value="@ViewBag.Id" />
+
+
+            <div class="form-group">
+
+                <label>Pizza Name :</label>  @ViewBag.Name
+
+                <input type="hidden" id="=hdnId" value="@ViewBag.Id" />
+                <input type="hidden" id="=hdnPrice" value="@ViewBag.Price" />
+
+            </div>
+            <input asp-for="PizzaId" type="hidden" value="@ViewBag.Id" />
+            <div class="form-group">
+
+            </div>
+            @*<div class="form-group">
+                <label asp-for="OrderId" class="control-label"></label>
+                <input asp-for="OrderId" class="form-control" />
+                <span asp-validation-for="OrderId" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <label asp-for="CustomerName" class="control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="quantity" class="control-label" id="lbquantity"></label>
+                <input asp-for="quantity" class="form-control" id="quantityid" onclick="Calculate()" />
+                <span asp-validation-for="quantity" class="text-danger"> </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Toppings" class="control-label"></label>
+                <select asp-for="Toppings" class="form-control" id="Toppingsid" onclick="TotalPrice()" required>
+                    <option value="1 " id="option1">Pepperoni + Rs.15</option>
+                    <option value="2" id="option2">Mushrooms + Rs.25</option>
+                    <option value="3" id="option3">Extra Onions + Rs.30</option>
+                    <option value="4" id="option4">Bacon + Rs.25</option>
+                </select>
+                <span asp-validation-for="Toppings" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Crust" class="control-label"></label>
+                <select asp-for="Crust" class="form-control" required>
+                    <option value="None">Thin Crust  </option>
+                    <option value="Pepperoni">Sicilian Style</option>
+                    <option value="Mushrooms">Neapolitan Crust</option>
+                    <option value="Extra Onions">Flatbread</option>
+                    
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryDate" class="control-label"></label>
+                <input asp-for="DeliveryDate" class="form-control" />
+                <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <br />
+                <h4>Amount To Pay:</h4>              
+
+
+                <div class="form-group">
+                    
+                    <label asp-for="Amount" class="control-label"></label>
+                    
+                    <input asp-for="Amount" class="control-label" id="lbamount" Readonly" />
+                    @Html.HiddenFor(m => m.Amount)
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                @*@Html.ActionLink("Order", "Order", new { id=Model.OrderId })*@
+                <input type="submit" value="submit" class="btn btn-primary"/> 
+                <input type="button" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("HomePage", "Pizza")'" />
+
+
+
+            </div>
+
+        </form>
+
+    </div>
+
+ </div>
+       
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+     
+        <script>
+            function Calculate() {
+                var quantity = $("#quantityid").val();
+                var quantityprice = quantity * @ViewBag.Price;
+                $("#lbamount").val(quantityprice);
+                localStorage["quant"] = quantity;
+                localStorage["lastPrice"] = quantityprice;               
+                $("input[id=inamount]").value = quantityprice;
+
+            }
+
+        </script>
+        <script>
+            $('#lbamount').attr('readonly', 'true');
+
+            function TotalPrice() {
+                var a = $('#Toppingsid').val();           
+
+                if (a == 1) {
+                    value = localStorage["lastPrice"];
+                    num = parseInt(value);
+                    var FinalPrice = num + 15;
+                    $("#lbamount").val(FinalPrice);
+                }
+                if (a == 2) {
+                    value = localStorage["lastPrice"];
+                    num = parseInt(value);
+                    var FinalPrice = num + 25;
+                    $("#lbamount").val(FinalPrice);
+                }
+                if (a == 3) {
+                    value = localStorage["lastPrice"];
+                    num = parseInt(value);
+                    var FinalPrice = num + 30 ;
+                    $("#lbamount").val(FinalPrice);
+                }
+                if (a == 4) {
+                    value = localStorage["lastPrice"];
+                    num = parseInt(value);
+                    FinalPrice = num + 25;
+                    $("#lbamount").val(FinalPrice);
+                }
+
+            }
+        </script>

@@ -24,13 +24,15 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Policy;
+using System.Text;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 
 namespace PizzaClient.Controllers
 {
     public class PizzaController : Controller
     {
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> HomePage()
         {
             string BaseUrl = "http://localhost:30297/";
             var PizzaInfo = new List<Pizza>();
@@ -50,24 +52,71 @@ namespace PizzaClient.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> Order(int id)
+        public ActionResult OrderDetails(int id, string name, decimal price)
         {
-            TempData["id"] = id;
-            Pizza pizza = new Pizza();
+            ViewBag.Price = price;
+            ViewBag.Name = name;
+            ViewBag.Id = id;
+            return View();
+
+
+        }
+        [HttpPost]
+        public async Task<ActionResult> OrderDetails(OrderDetails Od)
+        {
+
             using (var client = new HttpClient())
             {
-                using(var response = await client.GetAsync("http://localhost:30297/api/Pizzas/" + id))
+
+                StringContent content = new StringContent(JsonConvert.SerializeObject(Od), Encoding.UTF8, "application/json");
+                using (var response = await client.PostAsync("http://localhost:30297/api/OrderDetails", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    pizza= JsonConvert.DeserializeObject<Pizza>(apiResponse);
-                }           
-                return View(pizza);
+                  
+                }
+
+                return View();
+                //return RedirectToAction("Order", new { iid =Od.OrderId });
+            }
+        }
+
+
+
+
+
+
+        //public ActionResult ViewDetail(OrderDetails od)
+        //{
+        //    ViewData["pizzaid"]=od.PizzaId;
+        //    int pizza_id = od.PizzaId;
+          
+        //    return RedirectToAction("order",pizza_id);
+        //}
+
+
+
+        public async Task<ActionResult> Order(int id)
+        {
+            OrderDetails od = new OrderDetails();
+            using (var client = new HttpClient())
+            {
+                using (var response = await client.GetAsync("http://localhost:30297/api/OrderDetails/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    od = JsonConvert.DeserializeObject<OrderDetails>(apiResponse);
+                }
+                return View(od);
 
             }
         }
-        
+
+        public IActionResult Success()
+        {
+            return View();
+        }
 
 
-    }
 
+    } 
 }
+

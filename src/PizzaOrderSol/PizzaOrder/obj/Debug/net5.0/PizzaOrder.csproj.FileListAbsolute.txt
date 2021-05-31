@@ -133,3 +133,13 @@ D:\Training\PizzaOrderSol\PizzaOrder\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnal
 D:\Training\PizzaOrderSol\PizzaOrder\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Training\PizzaOrderSol\PizzaOrder\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\Training\PizzaOrderSol\PizzaOrder\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+D:\Training\PizzaOrderSol\PizzaOrder\bin\Debug\net5.0\PizzaOrder.Views.dll
+D:\Training\PizzaOrderSol\PizzaOrder\bin\Debug\net5.0\PizzaOrder.Views.pdb
+D:\Training\PizzaOrderSol\PizzaOrder\obj\Debug\net5.0\PizzaOrder.RazorAssemblyInfo.cache
+D:\Training\PizzaOrderSol\PizzaOrder\obj\Debug\net5.0\PizzaOrder.RazorAssemblyInfo.cs
+D:\Training\PizzaOrderSol\PizzaOrder\obj\Debug\net5.0\PizzaOrder.TagHelpers.input.cache
+D:\Training\PizzaOrderSol\PizzaOrder\obj\Debug\net5.0\PizzaOrder.TagHelpers.output.cache
+D:\Training\PizzaOrderSol\PizzaOrder\obj\Debug\net5.0\PizzaOrder.RazorCoreGenerate.cache
+D:\Training\PizzaOrderSol\PizzaOrder\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+D:\Training\PizzaOrderSol\PizzaOrder\obj\Debug\net5.0\PizzaOrder.RazorTargetAssemblyInfo.cs
+D:\Training\PizzaOrderSol\PizzaOrder\obj\Debug\net5.0\PizzaOrder.Views.pdb

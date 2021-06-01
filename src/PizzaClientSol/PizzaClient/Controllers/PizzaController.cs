@@ -64,43 +64,33 @@ namespace PizzaClient.Controllers
         [HttpPost]
         public async Task<ActionResult> OrderDetails(OrderDetails Od)
         {
-
-            using (var client = new HttpClient())
-            {
-
-                StringContent content = new StringContent(JsonConvert.SerializeObject(Od), Encoding.UTF8, "application/json");
-                using (var response = await client.PostAsync("http://localhost:30297/api/OrderDetails", content))
+            
+                using (var client = new HttpClient())
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                  
-                }
 
-                return View();
-                //return RedirectToAction("Order", new { iid =Od.OrderId });
-            }
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(Od), Encoding.UTF8, "application/json");
+                    using (var response = await client.PostAsync("http://localhost:30297/api/OrderDetails", content))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        var obj= JsonConvert.DeserializeObject<OrderDetails>(apiResponse);
+                        TempData["Order_id"] = obj.OrderId;
+                    }
+                }
+                return RedirectToAction("Order");         
+
         }
 
 
 
 
 
-
-        //public ActionResult ViewDetail(OrderDetails od)
-        //{
-        //    ViewData["pizzaid"]=od.PizzaId;
-        //    int pizza_id = od.PizzaId;
-          
-        //    return RedirectToAction("order",pizza_id);
-        //}
-
-
-
         public async Task<ActionResult> Order(int id)
         {
+            int Orderid = Convert.ToInt32(TempData.Peek("Order_id"));
             OrderDetails od = new OrderDetails();
             using (var client = new HttpClient())
             {
-                using (var response = await client.GetAsync("http://localhost:30297/api/OrderDetails/" + id))
+                using (var response = await client.GetAsync("http://localhost:30297/api/OrderDetails/" + Orderid))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     od = JsonConvert.DeserializeObject<OrderDetails>(apiResponse);

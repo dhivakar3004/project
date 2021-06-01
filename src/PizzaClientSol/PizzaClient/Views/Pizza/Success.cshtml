@@ -1,26 +1,16 @@
 ﻿@model PizzaClient.Models.OrderDetails
 
 @{
-    ViewData["Title"] = "Order";
+    ViewData["Title"] = "Success";
 }
 
-<h1>Order Summary</h1>
+<h1>Success</h1>
 
-<div>
-    
+@*<div>
+    <h4>OrderDetails</h4>
+    <hr />
     <dl class="row">
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OrderId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PizzaId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PizzaId)
-        </dd>*@
+       
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CustomerName)
         </dt>
@@ -64,13 +54,12 @@
             @Html.DisplayFor(model => model.Amount)
         </dd>
     </dl>
-</div>
+</div>*@
 <div>
-    <h4>Once Ordered cannot Be Cancelled. Are you Sure ? </h4>
-    
-    <div>
-        <h4>Click Order To Confirm Your Order! </h4>
-    </div>
-    @Html.ActionLink("Order", "Success", new {  id = Model.OrderId })  |
-    <a asp-action="HomePage">Back to HomePage</a>
+    <h3>Your Order is Placed Successfully </h3>
+    <h4>
+        Thank you
+    </h4>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.PrimaryKey  }) *@
+    <a asp-action="HomePage">HomePage</a>
 </div>

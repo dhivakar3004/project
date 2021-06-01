@@ -92,9 +92,8 @@ namespace PizzaOrder.Controllers
                 }
                 else
                 {
-                    throw;
-                }
-                Console.WriteLine(ex.Message);
+                    return BadRequest(ex.Message);
+                }              
             }
 
 
@@ -102,7 +101,8 @@ namespace PizzaOrder.Controllers
             int id=orderDetails.OrderId;
 
             //return orderDetails;
-            return CreatedAtAction("GetOrderDetails", new { id = orderDetails.OrderId }, orderDetails);
+            return Ok(orderDetails);
+            //return CreatedAtAction("GetOrderDetails", new { id = orderDetails.OrderId }, orderDetails);
         }
 
         // DELETE: api/OrderDetails/5

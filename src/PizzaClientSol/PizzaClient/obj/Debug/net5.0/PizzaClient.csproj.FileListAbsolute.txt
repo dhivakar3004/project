@@ -119,4 +119,4 @@ D:\Training\PizzaClientSol\PizzaClient\bin\Debug\net5.0\runtimes\win-arm64\lib\n
 D:\Training\PizzaClientSol\PizzaClient\obj\Debug\net5.0\Razor\Views\Pizza\HomePage.cshtml.g.cs
 D:\Training\PizzaClientSol\PizzaClient\obj\Debug\net5.0\Razor\Views\Pizza\OrderDetails.cshtml.g.cs
 D:\Training\PizzaClientSol\PizzaClient\obj\Debug\net5.0\Razor\Views\Pizza\Order.cshtml.g.cs
-D:\Training\PizzaClientSol\PizzaClient\obj\Debug\net5.0\Razor\Views\Pizza\sampleDetails.cshtml.g.cs
+D:\Training\PizzaClientSol\PizzaClient\obj\Debug\net5.0\Razor\Views\Pizza\Success.cshtml.g.cs

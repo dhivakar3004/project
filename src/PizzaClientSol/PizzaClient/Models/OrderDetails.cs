@@ -13,8 +13,7 @@ namespace PizzaClient.Models
 
         public int PizzaId { get; set; }
         [ForeignKey("PizzaId")]
-        //public Pizza Pizza { get; set; }
-        
+    
         public string CustomerName { get; set; }
         [Required]
         [StringLength(10)]
